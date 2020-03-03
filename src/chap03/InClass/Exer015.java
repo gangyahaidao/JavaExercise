@@ -26,5 +26,4 @@ public class Exer015 {
 		}
 		System.out.println("解密结果如下：" + new String(array));
 	}
-
 }
