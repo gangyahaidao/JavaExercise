@@ -2,17 +2,17 @@ package chap03;
 
 public class Example3_1 {
 	public static void main(String args[]) {
-		char a1 = 'Ê®', a2 = 'µã', a3 = '½ø', a4 = '¹¥';
+		char a1 = 'Ê®', a2 = 'èµ·', a3 = 'è¿›', a4 = 'æ”»';
 		char secret = 'A';
 		a1 = (char) (a1 ^ secret);
 		a2 = (char) (a2 ^ secret);
 		a3 = (char) (a3 ^ secret);
 		a4 = (char) (a4 ^ secret);
-		System.out.println("ÃÜÎÄ:" + a1 + a2 + a3 + a4);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½:" + a1 + a2 + a3 + a4);
 		a1 = (char) (a1 ^ secret);
 		a2 = (char) (a2 ^ secret);
 		a3 = (char) (a3 ^ secret);
 		a4 = (char) (a4 ^ secret);
-		System.out.println("Ô­ÎÄ:" + a1 + a2 + a3 + a4);
+		System.out.println("Ô­ï¿½ï¿½:" + a1 + a2 + a3 + a4);
 	}
 }

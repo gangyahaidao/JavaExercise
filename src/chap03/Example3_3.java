@@ -2,17 +2,25 @@ package chap03;
 
 public class Example3_3 {
 	public static void main(String args[]) {
-		int math = 65, english = 85;
-		if (math > 60) {
-			System.out.println("数学及格了");
-		} else {
-			System.out.println("数学不及格");
+		int arr[][] = new int[10][];
+		
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = new int[i+1];
+			for(int j = 0; j < i+1; j++) {
+				if(i == 0 || j == 0 || i == j) {
+					arr[i][j] = 1;
+				} else {
+					arr[i][j] = arr[i-1][j] + arr[i-1][j-1];
+				}
+			}
 		}
-		if (english > 90) {
-			System.out.println("英语是优");
-		} else {
-			System.out.println("英语不是优");
+		
+		for(int[] row : arr) {
+			for(int col : row) {
+				System.out.print("" + col + '\t');
+			}
+			System.out.println();
 		}
-		System.out.println("我在学习if-else语句");
 	}
+		
 }

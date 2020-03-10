@@ -2,18 +2,18 @@ package chap02;
 
 public class Example2_1 {
 	/**
-	 * JavaÖÐµÄunicode×Ö·û¼¯±àÂë²âÊÔ
+	 * Javaï¿½Ðµï¿½unicodeï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static void main(String args[]) {
-		char chinaWord = 'ºÃ', japanWord = '¤¡';
+		char chinaWord = 'å¥½', japanWord = 'æ–‡';
 		char you = '\u4F60';
 		int position = 20320;
 
-		System.out.println("ºº×Ö:" + chinaWord + "µÄÎ»ÖÃ:" + (int) chinaWord);
-		System.out.println("ÈÕÎÄ:" + japanWord + "µÄÎ»ÖÃ:" + (int) japanWord);
-		System.out.println(position + "Î»ÖÃÉÏµÄ×Ö·ûÊÇ:" + (char) position);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½:" + chinaWord + "ï¿½ï¿½Î»ï¿½ï¿½:" + (int) chinaWord);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½:" + japanWord + "ï¿½ï¿½Î»ï¿½ï¿½:" + (int) japanWord);
+		System.out.println(position + "Î»ï¿½ï¿½ï¿½Ïµï¿½ï¿½Ö·ï¿½ï¿½ï¿½:" + (char) position);
 		position = 21319;
-		System.out.println(position + "Î»ÖÃÉÏµÄ×Ö·ûÊÇ:" + (char) position);
+		System.out.println(position + "Î»ï¿½ï¿½ï¿½Ïµï¿½ï¿½Ö·ï¿½ï¿½ï¿½:" + (char) position);
 		System.out.println("you:" + you);
 	}
 }
