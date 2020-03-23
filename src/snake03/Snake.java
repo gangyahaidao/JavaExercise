@@ -2,9 +2,10 @@ package snake03;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Snake {
+public class Snake extends KeyAdapter {
 	//位置
 	private int x;
 	private int y;

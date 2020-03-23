@@ -18,15 +18,13 @@ public class MainFrame03 extends Frame {
 	public static final int GAME_WIDTH = 400;
 	public static final int GAME_HEIGHT = 400;
 	// 游戏中方格的大小
-	private static final int squareSize = 10;
+	public static final int squareSize = 10;
 
 	Snake s = new Snake(40, 40, Direction.D, this);
 
 	public static void main(String[] args) {
-
 		MainFrame03 s = new MainFrame03();
 		s.launchFrame();
-
 	}
 
 	private void launchFrame() {
@@ -37,21 +35,17 @@ public class MainFrame03 extends Frame {
 		this.setTitle("Snake");
 		// 添加关闭的处理事件
 		this.addWindowListener(new WindowAdapter() {
-
 			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
-
 		});
 		// 禁止改变窗的大小
 		this.setResizable(false);
 		this.setVisible(true);
 
 		new Thread(new MyPaintThread()).start();
-
-		this.addKeyListener(new MyKeyListener());
-
+		this.addKeyListener(s);
 	}
 
 	@Override
@@ -86,26 +80,21 @@ public class MainFrame03 extends Frame {
 			while (true) {
 				repaint();// 会自动调用paint方法
 				try {
-					Thread.sleep(50);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-
 		}
-
 	}
 
 	/*
 	 * 键盘监听类
 	 */
 	private class MyKeyListener extends KeyAdapter {
-
 		@Override
 		public void keyPressed(KeyEvent e) {
 			s.keyPressed(e);
 		}
-
 	}
-
 }
