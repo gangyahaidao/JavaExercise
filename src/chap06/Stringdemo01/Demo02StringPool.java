@@ -1,4 +1,4 @@
-package chap05.Stringdemo01;
+package chap06.Stringdemo01;
 
 /*
 字符串常量池：程序当中直接写上的双引号字符串，就在字符串常量池中。

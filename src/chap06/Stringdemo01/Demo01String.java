@@ -1,4 +1,4 @@
-package chap05.Stringdemo01;
+package chap06.Stringdemo01;
 
 /*
 java.lang.String类代表字符串。

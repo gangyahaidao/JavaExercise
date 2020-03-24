@@ -1,4 +1,4 @@
-package chap05.Stringdemo02;
+package chap06.Stringdemo02;
 
 /*
 分割字符串的方法：

@@ -1,4 +1,4 @@
-package chap05.Stringdemo02;
+package chap06.Stringdemo02;
 
 /*
 ==是进行对象的地址值比较，如果确实需要字符串的内容比较，可以使用两个方法：
