@@ -12,7 +12,7 @@ public class Demo02StringGet {
 
     public static void main(String[] args) {
         // 获取字符串的长度
-        int length = "asdasfeutrvauevbueyvb".length();
+        int length = "asda".length();
         System.out.println("字符串的长度是：" + length);
 
         // 拼接字符串
