@@ -51,11 +51,11 @@ class MyWindowListener3 extends WindowAdapter {
 	}
 }
 
-class MyFrame extends Frame {
+class MyFrame2 extends Frame {
 	private MyWindowListener3 myWindowListener3;
 	private MyPanel mypanel;
 	
-	public MyFrame(String title) {
+	public MyFrame2(String title) {
 		myWindowListener3 = new MyWindowListener3();
 		mypanel = new MyPanel();
 		
@@ -72,14 +72,13 @@ class MyFrame extends Frame {
 	
 }
 
-
 public class MainFrame2V3 {
 	public static final int GAME_WIDTH =800;
 	public static final int GAME_HEIGHT =800;
 	public static final int	GAP_SIZE = 25;
 
 	public static void main(String[] args) {
-		MyFrame myframe = new MyFrame("贪吃蛇V1");
+		MyFrame2 myframe = new MyFrame2("贪吃蛇V1");
 	}
 
 }
