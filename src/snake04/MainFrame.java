@@ -45,10 +45,11 @@ class MyPanal extends Panel {
 					g.setColor(Color.WHITE);
 					//g.fill3DRect(i*MainFrame03v2.GAP_SIZE, j*MainFrame03v2.GAP_SIZE, MainFrame03v2.GAP_SIZE, MainFrame03v2.GAP_SIZE, false);
 					g.fillRect(i*MainFrame.GAP_SIZE, j*MainFrame.GAP_SIZE, MainFrame.GAP_SIZE, MainFrame.GAP_SIZE);
-				}
-				
+				}				
 			}			
 		}
+		// 在画布中间显示蛇头，此处传递的画笔g只在paint方法中才有效，方法返回引用将不再有效
+		// 所以此处传递过去的画笔需要用getGraphics()方法重新获取画笔对象
 		snake.drawInit(getGraphics());
 	}	
 }
