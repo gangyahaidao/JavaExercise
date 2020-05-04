@@ -1,4 +1,4 @@
-package snake08;
+package snake10;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
@@ -27,7 +26,7 @@ public class Snake extends KeyAdapter {
 	public static final int UP = 3;
 	public static final int DOWN = 4;
 	public static final int NONE = 0;
-	public static int SPEED = 500; // 蛇移动时间毫秒
+	public static int SPEED = 1000; // 蛇移动时间毫秒
 	
 	// 定义一个数组，用来存储蛇的身体
 	public SnakeBit snakeBody[];
@@ -84,30 +83,34 @@ public class Snake extends KeyAdapter {
 				long millisTime = System.currentTimeMillis();
 				// 接收对手蛇运动的消息
 				try {
-					InputStream input = client.getInputStream();										
-					System.out.println("input.available() = " + input.available());
+					InputStream input = client.getInputStream();
 					if(input.available() > 0) {
 						byte[] b = new byte[10240];
 						int len = input.read(b);
 						String msg = new String(b, 0, len);
 						
-						System.out.println("对方蛇运动信息 = " + msg);
-						JSONObject jsonObj = new JSONObject(msg);
+						System.out.println("收到对方蛇运动信息 = " + msg);
+						JSONObject jsonObj = new JSONObject(msg);					
 						
-						// 绘制食物
-						JSONObject foodObj = jsonObj.getJSONObject("food");
-						if(food == null) { // 当前界面中还没有食物
-							drawSnakeXY(foodObj.getInt("x"), foodObj.getInt("y"), new Color(foodObj.getInt("color")));
-						} else {
-							if(food.getX()!=foodObj.getInt("x") || food.getY()!=foodObj.getInt("y")) { // 说明食物的位置改变了，就是被另一个蛇吃掉了，需要重新绘制
-								deleteSnakeXY(food.getX(), food.getY(), Color.WHITE); // 食物设置为背景色清除掉								
-								food.setX(foodObj.getInt("x")); // 更新食物对象的位置值
-								food.setY(foodObj.getInt("y"));
-								drawSnakeXY(foodObj.getInt("x"), foodObj.getInt("y"), new Color(foodObj.getInt("color")));								
-							}
-						}
-						
-						if(jsonObj.getBoolean("isAlive")) { // 如果另一条蛇还活着，将之前的蛇擦除掉，在新的位置完全重新绘制
+						// 重新绘制对手的蛇对象
+						if(jsonObj.getBoolean("isAlive")) {
+							
+							// 绘制食物
+							JSONObject foodObj = jsonObj.getJSONObject("food");
+							//System.out.println("foodObj = " + foodObj + ", client food = " + food);
+							if(food == null) { // 当前界面中还没有食物
+								drawSnakeXY(foodObj.getInt("x"), foodObj.getInt("y"), new Color(foodObj.getInt("color")));
+								food = new SnakeBit(foodObj.getInt("x"), foodObj.getInt("y"), new Color(foodObj.getInt("color")));
+							} else {
+								if(food.getX()!=foodObj.getInt("x") || food.getY()!=foodObj.getInt("y")) { // 说明食物的位置改变了，就是被另一个蛇吃掉了，需要重新绘制
+									deleteSnakeXY(food.getX(), food.getY(), Color.WHITE); // 食物设置为背景色清除掉								
+									food.setX(foodObj.getInt("x")); // 更新食物对象的位置值
+									food.setY(foodObj.getInt("y"));
+									drawSnakeXY(foodObj.getInt("x"), foodObj.getInt("y"), new Color(foodObj.getInt("color")));								
+								}
+							}							
+							
+							// 如果另一条蛇还活着，将之前的蛇擦除掉，在新的位置完全重新绘制
 							JSONArray snakeArr = jsonObj.getJSONArray("snakeBody");
 							if(preOtherSnakeObj != null) { // 如果不是第一次绘制，则需要擦除之前的蛇							
 								for (int i = 0; i < preOtherSnakeObj.length(); i++) {
@@ -185,8 +188,9 @@ public class Snake extends KeyAdapter {
 				// 将食物对象设置为null发送服务器，这样服务器就知道需要新生成一个食物
 				food = null;
 			}
-			// 把旧蛇头变成身体的一部分
+			// 重新绘制，把旧蛇头变成身体的一部分
 			drawSnakeXY(oldBit.getX(), oldBit.getY(), Color.ORANGE);
+			oldBit.setColor(Color.ORANGE); // 将蛇头对象数据也修改成身体一样的颜色
 			
 			// 将当前蛇数组中的所有数据向后移动一格
 			for(int i = snakeLength; i > 0; i--) {
@@ -225,7 +229,7 @@ public class Snake extends KeyAdapter {
 			// 将数据发送到服务端
 			if(client.isConnected()) { // 如果客户端还处于连接状态
 				try {
-					System.out.println("发送数据 = " + jsonObj.toString());
+					System.out.println("发送自身状态数据");
 					out.write(jsonObj.toString().getBytes());
 					out.flush();
 				} catch (IOException e) {

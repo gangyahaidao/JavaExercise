@@ -1,4 +1,4 @@
-package snake08;
+package snake09;
 
 import java.awt.Color;
 import java.awt.Frame;
@@ -8,13 +8,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * v8，在服务端生成食物，将坐标发送到各个客户端，要求两个客户端都在线时才开始生成食物
+ * v9，修正V8版本产生的不同步运行问题
  * 编译命令：
  * cd src进入src目录
- * javac -encoding UTF-8  -cp ".;../libs/json-20190722.jar" .\snake08\MainFrame.java .\snake08\Snake.java .\snake08\SnakeBit.java
+ * javac -encoding UTF-8  -cp ".;../libs/json-20190722.jar" .\snake09\MainFrame.java .\snake09\Snake.java .\snake09\SnakeBit.java
  * 
  * 执行命令：
- * java -cp ".;../libs/json-20190722.jar" snake08.MainFrame
+ * java -cp ".;../libs/json-20190722.jar" snake09.MainFrame
  * */
 class MyPanel extends Panel {
 	private Snake snake;
