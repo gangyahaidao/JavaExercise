@@ -28,7 +28,7 @@ public class RunnableImpl implements Runnable{
         //使用死循环,让卖票操作重复执行
         while(true){
            //同步代码块
-            synchronized (obj){
+            synchronized (this){
                 //先判断票是否存在
                 if(ticket>0){
                     //提高安全问题出现的概率,让程序睡眠

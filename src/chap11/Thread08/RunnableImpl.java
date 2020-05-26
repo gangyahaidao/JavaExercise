@@ -3,8 +3,13 @@ package chap11.Thread08;
     实现卖票案例
  */
 public class RunnableImpl implements Runnable{
+//public class RunnableImpl extends Thread{
     //定义一个多个线程共享的票源
     private  int ticket = 100;
+    
+    public void setTicket(int ticket) {
+    	this.ticket = ticket;
+    }
 
 
     //设置线程任务:卖票
