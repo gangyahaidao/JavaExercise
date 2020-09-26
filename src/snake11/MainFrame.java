@@ -1,4 +1,4 @@
-package snake10;
+package Snake09;
 
 import java.awt.Color;
 import java.awt.Frame;
@@ -6,23 +6,22 @@ import java.awt.Graphics;
 import java.awt.Panel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
- * v10，修正V9版本基础上做一些小的优化，如不同的玩家有不同的蛇颜色；运行显示上的一些小bug修复等
- * 编译命令：
- * cd src进入src目录
- * javac -encoding UTF-8  -cp ".;../libs/json-20190722.jar" .\snake10\MainFrame.java .\snake10\Snake.java .\snake10\SnakeBit.java
+ * v8,贪吃蛇具备吃食物身体增长功能
  * 
- * 执行命令：
- * java -cp ".;../libs/json-20190722.jar" snake10.MainFrame
+ * javac -encoding UTF-8  -cp ".;../libs/json-20190722.jar" .\Snake09\MainFrame.java .\Snake09\Snake.java .\Snake09\SnakeBit.java
+ * 
+ * java -cp ".;../libs/json-20190722.jar" Snake09.MainFrame
  * */
+/**面板，相当于画布，用来绘制贪食蛇界面及贪吃蛇*/
 class MyPanel extends Panel {
 	private Snake snake;
 	
 	public MyPanel() {
-		setBounds(4, 28, MainFrame.GAME_WIDTH, MainFrame.GAME_HEIGHT); // 设置面板在窗口中的相对位置及大小
+		setBounds(4, 28, MainFrame.GAME_WIDTH, MainFrame.GAME_HEIGHT);
 		setBackground(Color.WHITE);
-		setFocusable(true); // 启动时获取鼠标焦点，这样可以响应键盘按键操作
 		
 		snake = new Snake(MainFrame.GAME_WIDTH/2, 
 				MainFrame.GAME_HEIGHT/2, this);		
@@ -45,7 +44,7 @@ class MyPanel extends Panel {
 							MainFrame.GAP_SIZE, 
 							true);
 				} else {
-					g.setColor(Color.WHITE); // 重新设置画笔颜色
+					g.setColor(Color.WHITE);
 					g.fillRect(i*MainFrame.GAP_SIZE, 
 							j*MainFrame.GAP_SIZE, 
 							MainFrame.GAP_SIZE, 
@@ -59,8 +58,9 @@ class MyPanel extends Panel {
 	}
 }
 
+/**创建一个响应鼠标事件的类，主要是用来实现关闭窗口作用*/
 class MyWindowListener extends WindowAdapter {
-	// override覆盖父类的关闭方法
+	
 	public void windowClosing(WindowEvent e) {
 		System.exit(0);
 	}
@@ -74,10 +74,10 @@ class MyFrame extends Frame {
 		myWindowListener = new MyWindowListener();
 		mypanel = new MyPanel();
 		
-		setTitle(title); // 设置窗口标题
-		setBounds(300, 200, MainFrame.GAME_WIDTH+8, MainFrame.GAME_HEIGHT+32); // 设置窗口所在空间位置及大小
-		setBackground(Color.GRAY); // 设置窗口背景色
-		setLayout(null); // 把窗口布局设置为null方式
+		setTitle(title);
+		setBounds(300, 200, MainFrame.GAME_WIDTH+8, MainFrame.GAME_HEIGHT+32);
+		setBackground(Color.GRAY);
+		setLayout(null);
 		add(mypanel);
 		addWindowListener(myWindowListener); // 给窗口绑定鼠标点击关闭功能
 		
@@ -93,7 +93,7 @@ public class MainFrame {
 	public static final int	GAP_SIZE = 25;
 
 	public static void main(String[] args) {
-		MyFrame myframe = new MyFrame("贪吃蛇V8");
+		MyFrame myframe = new MyFrame("贪吃蛇V9");
 	}
 
 }
